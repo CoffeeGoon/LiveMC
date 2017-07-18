@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<h1 style="color:white; font:BAUS93; font-size:400%; background-color:202020;">
+<br>
+<br>
+<center>
+<strong>
+Live Music Coordinator </strong> </center>
+
+<br>
+<br>
+<right>
+<a href="createaccount.html"<button> create account </button></a>
+</right>
+<br>
+</h1>
+</head>
+<body>
+
