@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<style>
+ @font-face {
+ 	font-family:
+ 	baus;
+src: 
+url(CHILLER.TTF); 
+}
+</style>
+
+</head>
+<body style="background-color:black">
+<h1 style="color:white;
+ font-family:baus; font-size:200%; background-color:#000000; ">
+<br>
+<br>
+<center>
+
+Account Creation </center>
+<br>
+ <center>
+ <strong>
+ <br>
+ <form>
+  
+    <input id="btype" name="vob" type="radio"> Band <input id="vtype"  name="vob" type="radio" > Venue
+ <br>_______name: <input id="title" type="text"> 
+<br>____username: <input id="usr" type="text"> </input> 
+  <br> ___password: <input id="password" type="text"> </input> 
+ 
+   <br> contact info: <input id="cont" type="text"> 
+   <br>
+   <br>
+   Account Description
+ <br>
+ <textarea  style="font-family:baus; font-size:28px; font-weight:bold" id="acbio" rows="12" cols="50">
+  </textarea>
+  </form>
+ <br>
+ <div id="subm" style="font-size:45px"> Create Account </div>
+ <br>
+  <div id="response" > </div>
+ <br>
+ <br>
+ <br>
+ <br>
+ </strong>
+ </center>
+  <script type="text/javascript" src="cordova.js"></script>
+ <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+ <script>
+ var username ="";
+ var name = "";
+ var password = "";
+ var bio = "";
+ var contact = "";
+ var band = false;
+ var host = false;
+ var enable = false;
+ var inputs = new Array(5);
+ var check = function(args){
+    var count = 0;
+    while(count != 5){
+       if(args[count] == ''){
+       	 enable = false;
+       	 alert(count);
+
+       }
+       count++;
+    }
+   // alert(enable);
+ };
+  $("#subm").click(
+  	function(e){
+        if(document.getElementById("btype").checked){  band = true; host = false;}
+         if(document.getElementById("btype").checked){host = true; band = false;}
+         if(band != true && host != true){ alert("error");}
+      inputs[0] = username = document.getElementById("usr").value;
+       inputs[1] = username = document.getElementById("password").value;
+        inputs[2] = username = document.getElementById("title").value;
+         inputs[3] = username = document.getElementById("cont").value;
+          inputs[4] = username = document.getElementById("acbio").value;
+       if(band){
+       	var url = "http://127.0.0.1/bandpasscheck.php?callback=''&user=" + username;
+       $.getJSON(url, function(ret){
+        if (ret.retvalue == '') { enable = true;}
+       });
+       check(inputs);
+   }
+   if(host){
+   		var url = "http://127.0.0.1/hostpasscheck.php?callback=''&user=" + username;
+   	 $.getJSON(url, function(ret){
+        if (ret.retvalue == '') { enable = true;}
+       });
+   	 check(inputs);
+
+   }
+  	}
+  	);
+ </script>
+</body>
+</html>

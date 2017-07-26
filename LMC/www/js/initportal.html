@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+<meta charset="utf-8">
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<style>
+ @font-face {
+ 	font-family:
+ 	baus;
+src: 
+url(CHILLER.TTF); 
+}
+</style>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+<script src="initportal.js"> </script>
+</head>
+<body style="background-color:black">
+ 
+ <div id="banner"> 
+  <center>
+<h1 id="bannertext">
+<br>
+  name
+<br>
+
+</h1>
+</center>
+ </div>
+<table id="menuebar">
+<tbody align="center">
+<td></td><td></td><td></td><td></td><td></td>
+</tbody>
+</table>
+<script>
+ var cellheight = $(window).height()/12;
+ var cellwidth = ($(window).width() * 4)/25;
+  var alter = "width:" + cellwidth + "; height:" + cellheight + ";" + "background-color:red";
+ $('td').css(alter);
+ </script>
+<div id="pagespace">
+ <h1 style="background-color:aqua"> 
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ </h1>
+</div>
+</body>
+</html>

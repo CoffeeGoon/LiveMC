@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+<meta charset="utf-8">
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<style>
+ @font-face {
+ 	font-family:
+ 	baus;
+src: 
+url(CHILLER.TTF); 
+}
+</style>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+<script src="initportal.js"> </script>
+</head>
+<body style="background-color:black">
+
+<div id="innards">
+ 
+ <div id="banner"> 
+  <center>
+<h1 style="color:white" id="bannertext">
+<br>
+  name
+<br>
+
+</h1>
+</center>
+ </div>
+<table id="menuebar">
+<tbody align="center">
+<td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
+</tbody>
+</table>
+<table>
+<tbody align="center">
+<td id="space" TD style="vertical-align:text-top;"  style="background-color:blue">
+<h1 id="pagespace" style="color:black">
+  hahahah
+</h1>
+</h1>
+</TD>
+</tbody>
+</table>
+</div>
+<script>
+ var cellheight = Math.floor($(window).height()/12);
+ var cellwidth = Math.floor($(window).width()/5);
+ //alert( "height is " + cellheight + " width is " + cellwidth);
+  //var alter = "width:" + cellwidth + "px; height:" + cellheight + "px;" + "background-color:red;";
+  //alert(alter);
+ $('td').css('background-color', 'red');
+ $('td').css('width', cellwidth + "px");
+ $('td').css('height', cellheight + 'px');
+ var cellw = $(window).width();
+ var cellh = $(window).height() * 3;
+ $('#space').css('width', cellw  + 'px');
+ $('#space').css('height', cellh + 'px');
+ $('#space').css('background-color', 'aqua');
+ </script>
+<div id="alternate">
+<h1 id="deny" hidden='true'>
+   <center>
+   <br>
+   PASSWORD AND USERNAME NOT VERIFIED ACCESS DENIED
+   <br>
+   <center>
+</h1>
+</div>
+</body>
+</html>
