@@ -22,6 +22,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="initalpage.html" />
+    <allow-intent href="initportal.html" />
+    <allow-intent href="accountcreation.html" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />

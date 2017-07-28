@@ -30,17 +30,23 @@ var app = {
         this.receivedEvent('deviceready');
     
     document.addEventListener("offline", function(){
+        var constate = navigator.connection.type;
+        if(constate == Connection.NONE ){
        var change = document.getElementById("warning");
        change.innerText = "no data connection, LMC needs internet to work";
+   }
    }, false);
        // alert("no data connection, LMC needs internet to work");
 
        
         document.addEventListener("online",
+              var constate = navigator.connection.type;
+              if(constate != Connection.NONE){
         setTimeout(function(){
             window.location.assign("initalpage.html");
 
         }, 3000), false);
+    }
     
     },
 
