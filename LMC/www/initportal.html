@@ -45,7 +45,57 @@ url(CHILLER.TTF);
 </h1>
 <ul id="lis" data-role="listview">
 </ul>
-</td>
+<form id="activeinfo" hidden>
+<select id="month" name='op1' class='date'>
+<option value=''>Month</option> 
+<option value="Dec">Dec</option>
+<option value="Nov">Nov</option>
+<option value="Oct">Oct</option>
+<option value="Sept">Sept</option>
+<option value="Aug">Aug</option>
+<option value="July">July</option>
+<option value="June">June</option>
+<option value="May">May</option>
+<option value="April">April</option>
+<option value="March">March</option>
+<option value="Feb">Feb</option>
+<option value="Jan">Jan</option>
+</select> 
+<select id='day' name='op2' class='date'> 
+<option value="">Day</option>
+</select> 
+<select id='year' name='op3'  class='date'> 
+<option value="">Year</option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+</select> 
+
+<select id='time' name="op4" class='date'> 
+<option value="" name="op5">time</option>
+</select>
+<button type='submit' id="actpost"> UPDATE </button>
+</form>
+<script>
+var days = 31;
+while(days != 0){
+	$("#day").append("<option value='" + days + "'>" + days + "</option>");
+	days = days - 1;
+}
+var time = 1;
+var halfA = ":00AM";
+var halfB = ":00PM";
+while(time != 13){
+	$("#time").append("<option value='" + time + halfA + "'>" +  time + halfA + "</option>");
+	time = time + 1;
+}
+time = 1;
+while(time != 13){
+	$("#time").append("<option value='" + time + halfB + "'>" +  time + halfB + "</option>");
+	time = time + 1;
+}
+</script>
 </tbody>
 </table>
 </div>

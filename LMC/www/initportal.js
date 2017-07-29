@@ -25,21 +25,45 @@ else{
  //<td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests">
 //create onclick listeners for td to fill in result space
 $('#contactinfo').click( function(x){
+  $("#lis").hide().listview("refresh");
   output.innerHTML=  e.contactinfo;
 });	
 $('#setvisibility').click( function(x){
+  $("#lis").hide().listview("refresh");
   if(e.active == 'false'){
       output.innerHTML = tes  + " is currently disabled would you like to set your account to active? <br> <button id='atog'>toggle </button>";
+   $("#atog").click(function(k){
+    if(tokens[2] == 'venue'){
+      $("#activeinfo").show();
+      $("#actpost").click(function(r){
+      var nuactive = document.getElementById("month").value + " " + document.getElementById("day").value + " " + document.getElementById("year").value + " " + document.getElementById("time").value;
+      var url = "http://127.0.0.1/toggleactive.php?callback=?&typ=venue&user=" + tokens[0] + "&value=" + nuactive;
+      $.getJSON(url, function(z){ window.location.reload();});
+    });
+    }
+    else{
+        var url =  "http://127.0.0.1/toggleactive.php?callback=?&typ=band&user=" + tokens[0] + "&value=true";
+    $.getJSON(url, function(z){window.location.reload();});
+
+    }
+ });
+
   }
   else{
     output.innerHTML = tes + " is currently active and visible to other users would you like to deactivate your visibility? <br> <button id='atog'>toggle </button>";
+     $("#atog").click( function(k){
+         var url =  "http://127.0.0.1/toggleactive.php?callback=?&typ="+ tokens[2] + "&user=" + tokens[0] + "&value=false";  
+          $.getJSON(url, function(z){window.location.reload();}); 
+    });
   }
 
 });
 $('#pagedescription').click( function(x){
+  $("#lis").hide().listview("refresh");
      output.innerHTML=  e.bio;
 });	
 $('#internalrequests').click( function(x){
+  $("#lis").hide().listview("refresh");
        var markup = "<br> <button  id='req'>REQUESTS</button> <button id='actchoices'>ACTIVE PROFILES</button> <br> <br>"; 
        output.innerHTML = markup;
      // $("#space").append("<ul id='profiles' data-role='listview' data-inset='true' data-divider-theme='d'> </ul>'");
@@ -49,6 +73,7 @@ $('#internalrequests').click( function(x){
       
       $('#actchoices').click(function(){ 
           $('li').remove();
+           $('#lis').show();
         for( var i = 0; i < k.available.length; i++){
           var block = "";
         for(var j = 0; j < k.available[i].length; j++){
@@ -63,6 +88,7 @@ $('#internalrequests').click( function(x){
 
       $('#req').click(function(){
         $('li').remove();
+         $('#lis').show();
         for( var i = 0; i < k.requests.length; i++){
         
         $('#lis').append( "<li data-role='list-divider'>" + k.requests[i] + "</li>").listview("refresh");
@@ -78,7 +104,7 @@ $('#internalrequests').click( function(x){
       //list views
 });	
 $('#externalrequests').click( function(x){
-
+$("#lis").hide().listview("refresh");
     //populate with all opposite entries that have requested this account all active accounts->requested_id->name = e.name
 });
 
