@@ -9,10 +9,29 @@ var requests = new Array();
 var requeststo = new Array();
 var active;
 var name;
-
+var reqname = "";
+var namrg;
 var tokens = new Array(3);
+ var users = new Array();
+ var descripts = new Array();
+var request = function(num){
+          //alert("poop");
+          var acname = users[num];
+          var descript = descripts[num];
+          reqname = tokens[2] + "requests_" + tokens[0].toLowerCase();
+           var stri = "http://127.0.0.1/addRequest.php?callback=?&user=" + reqname + "&otheruser=" + acname +"&des=" + descript;
+           //alert(stri);
+         $.getJSON(stri, function(t){
+          document.location.reload();
+           });
+
+         };
+
+
+
 
 var inflate = function(e){
+  var reqname = e.requests;
 	if(e.enable != '1'){
       $('#innards').remove();
     $('#deny').show();
@@ -70,21 +89,38 @@ $('#internalrequests').click( function(x){
       // $("#profiles").listview("refresh");
        var url = "http://127.0.0.1/accountrequests.php?callback=?";
        $.getJSON(url, { usrid : tokens[0], type : tokens[2]}, function(k){
-      
+          var ready = 0;         
       $('#actchoices').click(function(){ 
           $('li').remove();
            $('#lis').show();
+           users = new Array();
+           descripts = new Array();
         for( var i = 0; i < k.available.length; i++){
+
           var block = "";
-        for(var j = 0; j < k.available[i].length; j++){
+        for(var j = 0; j < k.available[i].length - 1; j++){
          
             block = block + k.available[i][j] + "  <br>"
       }
-      block = "<li data-role='list-divider'>" + block + "</li>"; 
-     // alert(block);
+        namrg = k.available[i][k.available[i].length - 1];
+       users.push(namrg);
+
+       displayvalue = k.available[i][0];
+       if(k.available[i].length > 3){ displayvalue = displayvalue + " " + k.available[i][1];}
+       descripts.push(displayvalue);
+      block = "<li data-role='list-divider'>" + block + " <li onClick='request(" + i + ")' id='Item" +  i + "'>Request </li></li>"; 
+     // alert(block); onclick='request('" + namrg + "','" +  displayvalue +"'')'
         $('#lis').append(block).listview("refresh");
+         
+        //$('#Item').children().last().click( request(namrg, displayvalue) );
+           //var sel = "#Item" + i ;
+      
       }
+  //$('#Item0').click(alert(users[0]));
+      
     });
+     
+
 
       $('#req').click(function(){
         $('li').remove();
@@ -104,7 +140,17 @@ $('#internalrequests').click( function(x){
       //list views
 });	
 $('#externalrequests').click( function(x){
-$("#lis").hide().listview("refresh");
+  $('li').remove();
+  $('#lis').show();
+ var alttype = "band";
+  if(tokens[2] == "band"){ alttype = "venue";}
+ var url = "http://127.0.0.1/externalRequests.php?callback=?&user=" + tokens[0] + "?type=" + alttype;
+ $.getJSON(url, function(exr){
+   for(var n = 0; n < exr.extrequests.length; n++){
+     var tok = "<li data-role='list-divider'>" + exr.extrerequests[n] + "</li>";
+     $('#lis').append(tok).listview("refresh");
+   }
+ });
     //populate with all opposite entries that have requested this account all active accounts->requested_id->name = e.name
 });
 
