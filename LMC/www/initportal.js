@@ -142,12 +142,10 @@ $('#internalrequests').click( function(x){
 $('#externalrequests').click( function(x){
   $('li').remove();
   $('#lis').show();
- var alttype = "band";
-  if(tokens[2] == "band"){ alttype = "venue";}
- var url = "http://127.0.0.1/externalRequests.php?callback=?&user=" + tokens[0] + "?type=" + alttype;
+ var url = "http://127.0.0.1/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
  $.getJSON(url, function(exr){
    for(var n = 0; n < exr.extrequests.length; n++){
-     var tok = "<li data-role='list-divider'>" + exr.extrerequests[n] + "</li>";
+     var tok = "<li data-role='list-divider'>" + exr.extrequests[n] + "</li>";
      $('#lis').append(tok).listview("refresh");
    }
  });
