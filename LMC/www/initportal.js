@@ -45,12 +45,15 @@ else{
 //create onclick listeners for td to fill in result space
 $('#contactinfo').click( function(x){
   $("#lis").hide().listview("refresh");
-  output.innerHTML=  e.contactinfo;
+  output.innerHTML=  e.contactinfo + "<br>Change: <input id='conchange' type='text'> </input> <br> <div id='consub'>submit</div>";
+  $("#consub").click(function(m){
+    alert($('#conchange').val());
+  });
 });	
 $('#setvisibility').click( function(x){
   $("#lis").hide().listview("refresh");
   if(e.active == 'false'){
-      output.innerHTML = tes  + " is currently disabled would you like to set your account to active? <br> <button id='atog'>toggle </button>";
+      output.innerHTML = tes  + " is currently disabled would you like to set your account to active? <br> <div style='color:white' id='atog'>toggle </div>";
    $("#atog").click(function(k){
     if(tokens[2] == 'venue'){
       $("#activeinfo").show();
@@ -69,7 +72,7 @@ $('#setvisibility').click( function(x){
 
   }
   else{
-    output.innerHTML = tes + " is currently active and visible to other users would you like to deactivate your visibility? <br> <button id='atog'>toggle </button>";
+    output.innerHTML = tes + " is currently active and visible to other users would you like to deactivate your visibility? <br> <div style='color:white' id='atog'>toggle </div>";
      $("#atog").click( function(k){
          var url =  "http://127.0.0.1/toggleactive.php?callback=?&typ="+ tokens[2] + "&user=" + tokens[0] + "&value=false";  
           $.getJSON(url, function(z){window.location.reload();}); 
@@ -79,11 +82,24 @@ $('#setvisibility').click( function(x){
 });
 $('#pagedescription').click( function(x){
   $("#lis").hide().listview("refresh");
-     output.innerHTML=  e.bio;
+     output.innerHTML="<div style='text-align:right' id='editp'> Edit </div>" + e.bio + "<br> <textarea id='parachange'style='font-family:baus; font-size:28px; font-weight:bold' id='acbio' rows='12' cols='50'>" +
+  "</textarea> <br> <div id='changebio' > submit </div> <br>";
+  $('#changebio').hide();
+  $("#parachange").hide();
+  $('#editp').click( function(m){
+     $('#changebio').toggle();
+  $("#parachange").toggle();
+
+  });
+  $('#changebio').click(function(m){
+        alert($('#parachange').val());     
+
+  });
+
 });	
 $('#internalrequests').click( function(x){
   $("#lis").hide().listview("refresh");
-       var markup = "<br> <button  id='req'>REQUESTS</button> <button id='actchoices'>ACTIVE PROFILES</button> <br> <br>"; 
+       var markup = "<br><u> <div  id='req'>REQUESTS__</div> <div id='actchoices'>_ACTIVE PROFILES</div> </u> <br> <br>"; 
        output.innerHTML = markup;
      // $("#space").append("<ul id='profiles' data-role='listview' data-inset='true' data-divider-theme='d'> </ul>'");
       // $("#profiles").listview("refresh");
@@ -140,6 +156,7 @@ $('#internalrequests').click( function(x){
       //list views
 });	
 $('#externalrequests').click( function(x){
+  output.innerHTML = "";
   $('li').remove();
   $('#lis').show();
  var url = "http://127.0.0.1/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];

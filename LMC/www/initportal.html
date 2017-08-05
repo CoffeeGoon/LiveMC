@@ -24,7 +24,7 @@ url(CHILLER.TTF);
  
  <div id="banner" style="background-color:black"> 
   <center>
-<h1 style="color:white; background-color:black" id="bannertext">
+<h1 style="color:white; background-color:black; font-family:baus;" id="bannertext">
 <br>
   name
 <br>
@@ -32,18 +32,18 @@ url(CHILLER.TTF);
 </h1>
 </center>
  </div>
-<table id="menuebar" style="background-color:black">
-<tbody align="center">
+<table id="menuebar" style="background-color:#340099">
+<tbody align="center" style="font-family:baus; color:#6C0000; font-weight:bold;">
 <td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
 </tbody>
 </table>
-<div data-role="main" class="ui-content">
+<div data-role="main" style="background-color:#280055" class="ui-content">
 <table>
 <tbody align="center">
-<td id="space" TD style="vertical-align:text-top;"  style="background-color:blue">
-<h1 id="pagespace" style="color:black">
+<td id="space" TD style="vertical-align:text-top;"  style="background-color:#0605AB">
+<h1 id="pagespace" style="color:#990000; font-family:baus; font-weight:bold;">
 </h1>
-<ul id="lis" data-role="listview">
+<ul id="lis" data-theme='b' data-role="listview">
 </ul>
 <form id="activeinfo" hidden>
 <select id="month" name='op1' class='date'>
@@ -101,19 +101,25 @@ while(time != 13){
 </div>
 </div>
 <script>
- var cellheight = Math.floor($(window).height()/12);
+ var cellheight = Math.floor($(window).height()/10);
  var cellwidth = Math.floor($(window).width()/5);
  //alert( "height is " + cellheight + " width is " + cellwidth);
   //var alter = "width:" + cellwidth + "px; height:" + cellheight + "px;" + "background-color:red;";
   //alert(alter);
- $('td').css('background-color', 'red');
+ $('td').css('background-color', '#00DDDD');
  $('td').css('width', cellwidth + "px");
  $('td').css('height', cellheight + 'px');
+//id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
+$('#contactinfo').append("contact info");
+$('#setvisibility').append("Active Status");
+$('#pagedescription').append("Bio");
+$('#internalrequests').append("your requests");
+$('#externalrequests').append("external requests");
  var cellw = $(window).width();
  var cellh = $(window).height() * 3;
  $('#space').css('width', cellw  + 'px');
  $('#space').css('height', cellh + 'px');
- $('#space').css('background-color', 'aqua');
+ $('#space').css('background-color', '#0A0A1A');
  </script>
 <div id="alternate">
 <h1 id="deny" hidden='true'>
