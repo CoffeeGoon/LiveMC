@@ -9,7 +9,7 @@ $res = $qer->fetch_assoc();
 if($res == 0){ 
 $qstring = "INSERT  INTO " . $tname . "(username , descript) VALUES('" . $acid . "' , '" . $stringarray . "')" ;
 $result = $mysqli->query($qstring);
-echo $_GET['callback'] . "({'success':'" . $qstring  . "'})";
+echo $_GET['callback'] . "({'success':'true'})";
 }
 else{
 echo $_GET['callback'] . "({'success':'false'})"; }

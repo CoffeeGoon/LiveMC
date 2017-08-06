@@ -14,6 +14,12 @@ var namrg;
 var tokens = new Array(3);
  var users = new Array();
  var descripts = new Array();
+ var fill = function(swit){
+
+   $("#popdesc" + swit).toggle();
+
+
+ };
 var request = function(num){
           //alert("poop");
           var acname = users[num];
@@ -47,7 +53,14 @@ $('#contactinfo').click( function(x){
   $("#lis").hide().listview("refresh");
   output.innerHTML=  e.contactinfo + "<br>Change: <input id='conchange' type='text'> </input> <br> <div id='consub'>submit</div>";
   $("#consub").click(function(m){
-    alert($('#conchange').val());
+    //alert($('#conchange').val());
+    var tname = 'venue_account';
+    if(tokens[2] == 'band'){ tname = 'band_account'; }
+    $.getJSON('http://127.0.0.1/changecontact.php?callback=?', {info : $('#conchange').val(), ty : tname, acname : tokens[0] } ,
+        function(g){
+          window.location.reload();
+        }    
+      );
   });
 });	
 $('#setvisibility').click( function(x){
@@ -92,7 +105,14 @@ $('#pagedescription').click( function(x){
 
   });
   $('#changebio').click(function(m){
-        alert($('#parachange').val());     
+        //alert($('#parachange').val());
+         var tname = 'venue_account';
+    if(tokens[2] == 'band'){ tname = 'band_account'; }
+    $.getJSON('http://127.0.0.1/changebio.php?callback=?', {newbio : $('#parachange').val(), ty : tname, acname : tokens[0] } ,
+        function(g){
+          window.location.reload();
+        }    
+      );     
 
   });
 
@@ -107,31 +127,38 @@ $('#internalrequests').click( function(x){
        $.getJSON(url, { usrid : tokens[0], type : tokens[2]}, function(k){
           var ready = 0;         
       $('#actchoices').click(function(){ 
-          $('li').remove();
+          $('#lis').children().remove();
            $('#lis').show();
            users = new Array();
            descripts = new Array();
+           var total = '';
         for( var i = 0; i < k.available.length; i++){
 
           var block = "";
-        for(var j = 0; j < k.available[i].length - 1; j++){
+        for(var j = 0; j < k.available[i].length - 2; j++){
          
             block = block + k.available[i][j] + "  <br>"
       }
+
         namrg = k.available[i][k.available[i].length - 1];
        users.push(namrg);
-
+       var changepop =  "<h3 style='background-color:#000000; color:white; font-family:arial' hidden  id='popdesc" + i + "' data-role='listdivider' >  " + k.available[i][k.available[i].length - 2] + "  </h3> ";
+        // $('#popdesc').append(changepop);
+       //   $("#popdesc" + i).hide();
+       //total = total + changepop;
        displayvalue = k.available[i][0];
        if(k.available[i].length > 3){ displayvalue = displayvalue + " " + k.available[i][1];}
        descripts.push(displayvalue);
-      block = "<li data-role='list-divider'>" + block + " <li onClick='request(" + i + ")' id='Item" +  i + "'>Request </li></li>"; 
+      block ="<li  data-role='list-divider'> <a href='' onClick='fill(" + i + ")' >"  + block + "</a>  <li onClick='request(" + i + ")' id='Item" +  i + "'>Request </li> </li>" + changepop ; 
      // alert(block); onclick='request('" + namrg + "','" +  displayvalue +"'')'
         $('#lis').append(block).listview("refresh");
+        $("#popdesc" + i).hide();
          
         //$('#Item').children().last().click( request(namrg, displayvalue) );
            //var sel = "#Item" + i ;
       
       }
+    
   //$('#Item0').click(alert(users[0]));
       
     });
@@ -139,10 +166,9 @@ $('#internalrequests').click( function(x){
 
 
       $('#req').click(function(){
-        $('li').remove();
+        $('#lis').children().remove();
          $('#lis').show();
         for( var i = 0; i < k.requests.length; i++){
-        
         $('#lis').append( "<li data-role='list-divider'>" + k.requests[i] + "</li>").listview("refresh");
       }
 
