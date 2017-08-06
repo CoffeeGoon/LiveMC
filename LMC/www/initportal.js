@@ -93,6 +93,36 @@ $('#setvisibility').click( function(x){
   }
 
 });
+
+$("#crossbutton").click(function(x){
+var url = "http://127.0.0.1/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
+var exquests = new Array();
+var req = new Array();
+var cinfo = new Array();
+ $.getJSON(url, function(exr){  exquests = exr.extrequests.slice(); cinfo = exr.cont.slice(); 
+var urlB = "http://127.0.0.1/accountrequests.php?callback=?";
+$.getJSON(urlB, { usrid : tokens[0], type : tokens[2]}, function(k){ req = k.requests.slice();
+var least = req.length;
+
+$("#lis").children().remove();
+for(var n = 0; n < least; n++){
+  var stringA = req[n];
+for(var r = 0; r < exquests.length; r++){
+ var stringB = exquests[r];
+ if(stringA == stringB){
+  var item = "<li data-role='list-divider'>" + stringA + " contact info: " +  cinfo[r] + "</li>";
+    $('#lis').append(item).show().listview('refresh');
+ }
+}
+}
+});
+});
+
+}
+  );
+
+
+
 $('#pagedescription').click( function(x){
   $("#lis").hide().listview("refresh");
      output.innerHTML="<div style='text-align:right' id='editp'> Edit </div>" + e.bio + "<br> <textarea id='parachange'style='font-family:baus; font-size:28px; font-weight:bold' id='acbio' rows='12' cols='50'>" +

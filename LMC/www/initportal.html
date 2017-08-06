@@ -24,13 +24,20 @@ url(CHILLER.TTF);
  
  <div id="banner" style="background-color:black"> 
   <center>
-<h1 style="color:white; background-color:black; font-family:baus;" id="bannertext">
+<h1 style="color:white; background-color:black; font-weight:bolder; font-family:baus;" id="bannertext">
 <br>
   name
 <br>
 
 </h1>
 </center>
+<table  style="background-color:#000000">
+<tbody id="cross" align="center" style="font-family:baus; font-weight:bold;">
+<td id="buffA"> </td> 
+<td id="crossbutton">REQUEST MATCHES</td>
+<td id="buffB"> </td>
+</tbody>
+</table>
  </div>
 <table id="menuebar" style="background-color:#340099">
 <tbody align="center" style="font-family:baus; color:#6C0000; font-weight:bold;">
@@ -42,10 +49,6 @@ url(CHILLER.TTF);
 <tbody align="center">
 <td id="space" TD style="vertical-align:text-top;"  style="background-color:#0605AB">
 <h1 id="pagespace" style="color:#990000; font-family:baus; font-weight:bold;">
-
-<div  id='popdesc' >
-
-</div>
 </h1>
 <ul id="lis" data-theme='b' data-role="listview">
 </ul>
@@ -113,6 +116,17 @@ while(time != 13){
  $('td').css('background-color', '#00DDDD');
  $('td').css('width', cellwidth + "px");
  $('td').css('height', cellheight + 'px');
+ $('#crossbutton').css('width', Math.floor($(window).width() / 3 ) + "px");
+ var widthB = Math.floor($(window).width() / 3 );
+ var heightB =  Math.floor($(window).height()/20);
+ $('#buffA').css('width', widthB + "px");
+ $('#buffB').css('width', widthB + "px");
+ $('#buffA').css('background-color', '#000000');
+ $('#buffB').css('background-color', '#000000');
+ $('#crossbutton').css('background-color', '#CCCCCC');
+  $('#crossbutton').css('height',  heightB + 'px');
+  $('#buffA').css('height',  heightB + 'px');
+  $('#buffB').css('height',  heightB + 'px');
 //id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
 $('#contactinfo').append("contact info");
 $('#setvisibility').append("Active Status");
