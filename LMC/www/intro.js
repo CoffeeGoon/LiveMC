@@ -30,7 +30,7 @@ var callbac = function(e){
 
 musicanaccount.addEventListener("click", function(e){
   clicked = "band";
-	var url = "http://127.0.0.1/bandpasscheck.php?callback=?&user=" + document.getElementById("usr").value;
+	var url = "http://lmc.konghexdev.10host.com/bandpasscheck.php?callback=?&user=" + document.getElementById("usr").value;
 	$.getJSON(url, callbac);
 
 }
@@ -38,7 +38,7 @@ musicanaccount.addEventListener("click", function(e){
 
 venueaccount.addEventListener("click", function(e){
   clicked = "venue";
-var url = "http://127.0.0.1/hostpasscheck.php?callback=?&user=" + document.getElementById("usr").value;
+var url = "http://lmc.konghexdev.10host.com/hostpasscheck.php?callback=?&user=" + document.getElementById("usr").value;
 $.getJSON(url, callbac);
 }
 );

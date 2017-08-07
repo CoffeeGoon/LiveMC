@@ -25,7 +25,7 @@ var request = function(num){
           var acname = users[num];
           var descript = descripts[num];
           reqname = tokens[2] + "requests_" + tokens[0].toLowerCase();
-           var stri = "http://127.0.0.1/addRequest.php?callback=?&user=" + reqname + "&otheruser=" + acname +"&des=" + descript;
+           var stri = "http://lmc.konghexdev.10host.com/addRequest.php?callback=?&user=" + reqname + "&otheruser=" + acname +"&des=" + descript;
            //alert(stri);
          $.getJSON(stri, function(t){
           document.location.reload();
@@ -56,7 +56,7 @@ $('#contactinfo').click( function(x){
     //alert($('#conchange').val());
     var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://127.0.0.1/changecontact.php?callback=?', {info : $('#conchange').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.10host.com/changecontact.php?callback=?', {info : $('#conchange').val(), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -72,12 +72,12 @@ $('#setvisibility').click( function(x){
       $("#activeinfo").show();
       $("#actpost").click(function(r){
       var nuactive = document.getElementById("month").value + " " + document.getElementById("day").value + " " + document.getElementById("year").value + " " + document.getElementById("time").value;
-      var url = "http://127.0.0.1/toggleactive.php?callback=?&typ=venue&user=" + tokens[0] + "&value=" + nuactive;
+      var url = "http://lmc.konghexdev.10host.com/toggleactive.php?callback=?&typ=venue&user=" + tokens[0] + "&value=" + nuactive;
       $.getJSON(url, function(z){ window.location.reload();});
     });
     }
     else{
-        var url =  "http://127.0.0.1/toggleactive.php?callback=?&typ=band&user=" + tokens[0] + "&value=true";
+        var url =  "http://lmc.konghexdev.10host.com/toggleactive.php?callback=?&typ=band&user=" + tokens[0] + "&value=true";
     $.getJSON(url, function(z){window.location.reload();});
 
     }
@@ -87,7 +87,7 @@ $('#setvisibility').click( function(x){
   else{
     output.innerHTML = tes + " is currently active and visible to other users would you like to deactivate your visibility? <br> <div style='color:white' id='atog'>toggle </div>";
      $("#atog").click( function(k){
-         var url =  "http://127.0.0.1/toggleactive.php?callback=?&typ="+ tokens[2] + "&user=" + tokens[0] + "&value=false";  
+         var url =  "http://lmc.konghexdev.10host.com/toggleactive.php?callback=?&typ="+ tokens[2] + "&user=" + tokens[0] + "&value=false";  
           $.getJSON(url, function(z){window.location.reload();}); 
     });
   }
@@ -95,12 +95,12 @@ $('#setvisibility').click( function(x){
 });
 
 $("#crossbutton").click(function(x){
-var url = "http://127.0.0.1/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
+var url = "http://lmc.konghexdev.10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
 var exquests = new Array();
 var req = new Array();
 var cinfo = new Array();
  $.getJSON(url, function(exr){  exquests = exr.extrequests.slice(); cinfo = exr.cont.slice(); 
-var urlB = "http://127.0.0.1/accountrequests.php?callback=?";
+var urlB = "http://lmc.konghexdev.10host.com/accountrequests.php?callback=?";
 $.getJSON(urlB, { usrid : tokens[0], type : tokens[2]}, function(k){ req = k.requests.slice();
 var least = req.length;
 
@@ -138,7 +138,7 @@ $('#pagedescription').click( function(x){
         //alert($('#parachange').val());
          var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://127.0.0.1/changebio.php?callback=?', {newbio : $('#parachange').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.10host.com/changebio.php?callback=?', {newbio : $('#parachange').val(), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -153,7 +153,7 @@ $('#internalrequests').click( function(x){
        output.innerHTML = markup;
      // $("#space").append("<ul id='profiles' data-role='listview' data-inset='true' data-divider-theme='d'> </ul>'");
       // $("#profiles").listview("refresh");
-       var url = "http://127.0.0.1/accountrequests.php?callback=?";
+       var url = "http://lmc.konghexdev.10host.com/accountrequests.php?callback=?";
        $.getJSON(url, { usrid : tokens[0], type : tokens[2]}, function(k){
           var ready = 0;         
       $('#actchoices').click(function(){ 
@@ -215,7 +215,7 @@ $('#externalrequests').click( function(x){
   output.innerHTML = "";
   $('li').remove();
   $('#lis').show();
- var url = "http://127.0.0.1/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
+ var url = "http://lmc.konghexdev.10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
  $.getJSON(url, function(exr){
    for(var n = 0; n < exr.extrequests.length; n++){
      var tok = "<li data-role='list-divider'>" + exr.extrequests[n] + "</li>";
@@ -238,11 +238,11 @@ for(var i = 0; i < vars.length; i++){
 }
 
 if(tokens[2] == "band"){
-var url = 'http://127.0.0.1/bandrecord.php?callback=?&username=' + tokens[0] + "&password=" + tokens[1];
+var url = 'http://lmc.konghexdev.10host.com/bandrecord.php?callback=?&username=' + tokens[0] + "&password=" + tokens[1];
 	$.getJSON(url, inflate);
 }
 else{
-   var url = 'http://127.0.0.1/venuerecord.php?callback=?&username=' + tokens[0] + "&password=" + tokens[1];
+   var url = 'http://lmc.konghexdev.10host.com/venuerecord.php?callback=?&username=' + tokens[0] + "&password=" + tokens[1];
 	$.getJSON(url, inflate);
 }
 

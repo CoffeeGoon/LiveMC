@@ -1,7 +1,7 @@
 <?php
 $val = $_GET["usrid"];
 $tp = $_GET["type"];
-$msqli = new mysqli("127.0.0.1", "lmcdata", '', "lmcdata");
+$mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $tablename = "venuerequests_";
 if($tp == "band"){$tablename = "bandrequests_";}
 $val = $tablename . strtolower($val);

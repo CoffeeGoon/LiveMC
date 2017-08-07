@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("127.0.0.1", "lmcdata", '', 'lmcdata');
+$mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $bio = $_GET['newbio'];
 $account = $_GET['acname'];
 $type = $_GET['ty'];

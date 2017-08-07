@@ -1,5 +1,5 @@
 <?php
-$mysqli =  new mysqli("127.0.0.1" ,"lmcdata" , '' , "lmcdata");
+$mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $availablebandquery = "SELECT name FROM band_account WHERE active=1";
 $availablehostquery = "SELECT name FROM venue_account WHERE active=1";
 $allbands = "SELECT * FROM band_account";

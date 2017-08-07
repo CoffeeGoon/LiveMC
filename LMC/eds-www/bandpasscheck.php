@@ -1,6 +1,5 @@
 <?php
-
-$msqli = new mysqli("127.0.0.1" ,"lmcdata" , '' , "lmcdata");
+$mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $usern = $_GET['user'];
 $qstring = "SELECT password FROM band_accounts WHERE username='$usern'"  ;
 $keyvalue = $msqli->query($qstring);
