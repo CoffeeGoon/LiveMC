@@ -5,7 +5,7 @@ $args[0] = $_GET['use'];
 $args[1] = $_GET['password'];
 $args[2] = $_GET['name'];
 $args[3] = $_GET['contact'];
- $args[4] = $_GET['abio'];
+$args[4] = $_GET['abio'];
  if($_GET['type'] == 'band'){
   $breq = "bandrequests_" . $args[0];
   $q1 = "INSERT INTO band_account (username, password, name, contact_info, active, band_requests_id, band_bio) VALUES ( '" . $args[0] . "' , '" . $args[1] . "' ,'" . $args[2] . "' , '" . $args[3] . "' , 'false' , '" . $breq . "' , '" . $args[4] . "')";

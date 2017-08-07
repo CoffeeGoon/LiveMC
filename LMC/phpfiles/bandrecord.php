@@ -2,7 +2,7 @@
 $mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $username= $_GET['username'];
 $password = $_GET['password'];
-$result = $mysqli->query("SELECT * FROM band_account WHERE username='$username' AND password='$password'");
+$result = $mysqli->query("SELECT * FROM band_account WHERE username='" . $username. "' AND password='" . $password . "'");
 $row = $result->fetch_assoc();
 $bio = $row['band_bio'];
 $name =$row['name'];

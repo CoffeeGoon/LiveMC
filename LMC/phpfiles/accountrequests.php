@@ -4,8 +4,8 @@ $tp = $_GET["type"];
 $mysqli =  new mysqli("lmc.konghexdev.x10host.com" ,"konghexd_LMCuser" , "BoldPassword23" , "konghexd_LMC");
 $tablename = "venuerequests_";
 if($tp == "band"){$tablename = "bandrequests_";}
-$val = $tablename . strtolower($val);
-$data = $msqli->query("SELECT * FROM " . $val );
+$val = $tablename . $val;
+$data = $mysqli->query("SELECT * FROM " . $val );
 $callb = $_GET['callback'] . "(" . "{ ";
 $jsarray = " 'requests':[";
 $avail = " 'available': [";
@@ -18,7 +18,7 @@ while($ret != 0){
 	$ret = $data->fetch_assoc();
 }
 If($tp == "venue"){
-$data = $msqli->query("SELECT name, band_bio, username FROM band_account where band_account.active != 'false' ");
+$data = $mysqli->query("SELECT name, band_bio, username FROM band_account where band_account.active != 'false' ");
 $ret = $data->fetch_assoc();
 while($ret != 0){
 	 $add = " [ '" . $ret['name'] . "', '" . $ret['band_bio'] . "' , '" .  $ret['username'] . "'],";
@@ -28,7 +28,7 @@ while($ret != 0){
 }
 }
 else{
-$data = $msqli->query("SELECT name, active, venue_bio, username FROM venue_account where venue_account.active != 'false' ");
+$data = $mysqli->query("SELECT name, active, venue_bio, username FROM venue_account where venue_account.active != 'false' ");
 	$ret = $data->fetch_assoc();
 while($ret != 0){
 	$add = " [ '" . $ret['name'] . "', '" . $ret['active'] . "' , '" . $ret['venue_bio'] . "' , '" .  $ret['username'] . "'],";
