@@ -95,7 +95,7 @@ $('#setvisibility').click( function(x){
 });
 
 $("#crossbutton").click(function(x){
-var url = "http://lmc.konghexdev.x10host.com/externalRequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
+var url = "http://lmc.konghexdev.x10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
 var exquests = new Array();
 var req = new Array();
 var cinfo = new Array();

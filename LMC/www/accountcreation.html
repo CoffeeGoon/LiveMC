@@ -91,7 +91,11 @@ Account Creation </center>
           if (e.retvalue == '') {
 url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
           $.getJSON( url, {use : inputs[0], password : inputs[1], name : inputs[2], contact: inputs[3], abio : inputs[4], type : 'band'},  function(d){
-           enable = false;  window.location.assign("initalpage.html");
+           enable = false;  
+           if(d.return == "yes"){
+           window.location.assign("initalpage.html");
+         }
+         else{ alert("account creation failed, try different input.");}
          }); 
 
 
@@ -112,7 +116,10 @@ url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
 url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
            $.getJSON( url, {use : inputs[0], password : inputs[1], name : inputs[2], contact: inputs[3], abio : inputs[4], type : 'venue'},  function(d){
             enable = false;
+            if(d.return == " 'yes"){
              window.location.assign("initalpage.html");
+            }
+            else { alert("account creation failed, try different input.");}
            });
 
         }
