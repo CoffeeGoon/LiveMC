@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head >
+<head>
 <meta charset="utf-8">
 
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -24,46 +24,120 @@ url(CHILLER.TTF);
  
  <div id="banner" style="background-color:black"> 
   <center>
-<h1 style="color:white; background-color:black" id="bannertext">
+<h1 style="color:white; background-color:black; font-weight:bolder; font-family:baus;" id="bannertext">
 <br>
   name
 <br>
 
 </h1>
 </center>
+<table  style="background-color:#000000">
+<tbody id="cross" align="center" style="font-family:baus; font-weight:bold;">
+<td id="buffA"> </td> 
+<td id="crossbutton">REQUEST MATCHES</td>
+<td id="buffB"> </td>
+</tbody>
+</table>
  </div>
-<table id="menuebar" style="background-color:black">
-<tbody align="center">
+<table id="menuebar" style="background-color:#340099">
+<tbody align="center" style="font-family:baus; color:#6C0000; font-weight:bold;">
 <td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
 </tbody>
 </table>
-<div data-role="main" class="ui-content">
+<div data-role="main" style="background-color:#280055" class="ui-content">
 <table>
 <tbody align="center">
-<td id="space" TD style="vertical-align:text-top;"  style="background-color:blue">
-<h1 id="pagespace" style="color:black">
+<td id="space" TD style="vertical-align:text-top;"  style="background-color:#0605AB">
+<h1 id="pagespace" style="color:#990000; font-family:baus; font-weight:bold;">
 </h1>
-<ul id="lis" data-role="listview">
+<ul id="lis" data-theme='b' data-role="listview">
 </ul>
-</td>
+<form id="activeinfo" hidden>
+<select id="month" name='op1' class='date'>
+<option value=''>Month</option> 
+<option value="Dec">Dec</option>
+<option value="Nov">Nov</option>
+<option value="Oct">Oct</option>
+<option value="Sept">Sept</option>
+<option value="Aug">Aug</option>
+<option value="July">July</option>
+<option value="June">June</option>
+<option value="May">May</option>
+<option value="April">April</option>
+<option value="March">March</option>
+<option value="Feb">Feb</option>
+<option value="Jan">Jan</option>
+</select> 
+<select id='day' name='op2' class='date'> 
+<option value="">Day</option>
+</select> 
+<select id='year' name='op3'  class='date'> 
+<option value="">Year</option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+</select> 
+
+<select id='time' name="op4" class='date'> 
+<option value="" name="op5">time</option>
+</select>
+<button type='submit' id="actpost"> UPDATE </button>
+</form>
+<script>
+var days = 31;
+while(days != 0){
+	$("#day").append("<option value='" + days + "'>" + days + "</option>");
+	days = days - 1;
+}
+var time = 1;
+var halfA = ":00AM";
+var halfB = ":00PM";
+while(time != 13){
+	$("#time").append("<option value='" + time + halfA + "'>" +  time + halfA + "</option>");
+	time = time + 1;
+}
+time = 1;
+while(time != 13){
+	$("#time").append("<option value='" + time + halfB + "'>" +  time + halfB + "</option>");
+	time = time + 1;
+}
+</script>
 </tbody>
 </table>
 </div>
 </div>
 <script>
- var cellheight = Math.floor($(window).height()/12);
+ var cellheight = Math.floor($(window).height()/10);
  var cellwidth = Math.floor($(window).width()/5);
  //alert( "height is " + cellheight + " width is " + cellwidth);
   //var alter = "width:" + cellwidth + "px; height:" + cellheight + "px;" + "background-color:red;";
   //alert(alter);
- $('td').css('background-color', 'red');
+ $('td').css('background-color', '#00DDDD');
  $('td').css('width', cellwidth + "px");
  $('td').css('height', cellheight + 'px');
+ $('#crossbutton').css('width', Math.floor($(window).width() / 3 ) + "px");
+ var widthB = Math.floor($(window).width() / 3 );
+ var heightB =  Math.floor($(window).height()/20);
+ $('#buffA').css('width', widthB + "px");
+ $('#buffB').css('width', widthB + "px");
+ $('#buffA').css('background-color', '#000000');
+ $('#buffB').css('background-color', '#000000');
+ $('#crossbutton').css('background-color', '#CCCCCC');
+  $('#crossbutton').css('height',  heightB + 'px');
+  $('#buffA').css('height',  heightB + 'px');
+  $('#buffB').css('height',  heightB + 'px');
+//id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests"></td>
+$('#contactinfo').append("contact info");
+$('#setvisibility').append("Active Status");
+$('#pagedescription').append("Bio");
+$('#internalrequests').append("your requests");
+$('#externalrequests').append("external requests");
  var cellw = $(window).width();
  var cellh = $(window).height() * 3;
  $('#space').css('width', cellw  + 'px');
  $('#space').css('height', cellh + 'px');
- $('#space').css('background-color', 'aqua');
+ $('#space').css('background-color', '#0A0A1A');
  </script>
 <div id="alternate">
 <h1 id="deny" hidden='true'>

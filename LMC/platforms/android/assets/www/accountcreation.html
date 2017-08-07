@@ -82,14 +82,14 @@ Account Creation </center>
           inputs[4] = document.getElementById("acbio").value;
        if(band){
          enable = true;
-       	var url = "http://127.0.0.1/bandpasscheck.php?callback=?";
+       	var url = "http://lmc.konghexdev.x10host.com/bandpasscheck.php?callback=?";
        check(inputs);
           if(enable){
              enable = false;
         $.getJSON( url, { user : inputs[0] },  function(e){ 
                   
           if (e.retvalue == '') {
-url = "http://127.0.0.1/createaccount.php?callback=?";
+url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
           $.getJSON( url, {use : inputs[0], password : inputs[1], name : inputs[2], contact: inputs[3], abio : inputs[4], type : 'band'},  function(d){
            enable = false;  window.location.assign("initalpage.html");
          }); 
@@ -102,14 +102,14 @@ url = "http://127.0.0.1/createaccount.php?callback=?";
    }
    if(host){
        enable = true;
-   		var url = "http://127.0.0.1/hostpasscheck.php?callback=?";
+   		var url = "http://lmc.konghexdev.x10host.com/hostpasscheck.php?callback=?";
       check(inputs);
       if(enable){
         enable = false;
    	 $.getJSON(url,  { user : inputs[0] }, function(ret){
           
         if (ret.retvalue == "") { 
-url = "http://127.0.0.1/createaccount.php?callback=?";
+url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
            $.getJSON( url, {use : inputs[0], password : inputs[1], name : inputs[2], contact: inputs[3], abio : inputs[4], type : 'venue'},  function(d){
             enable = false;
              window.location.assign("initalpage.html");
