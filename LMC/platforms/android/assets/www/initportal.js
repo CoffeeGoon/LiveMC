@@ -37,6 +37,8 @@ var request = function(num){
 
 
 var inflate = function(e){
+	$("#bioinput").hide();
+	$("#contactinput").hide();
   var reqname = e.requests;
 	if(e.enable != '1'){
       $('#innards').remove();
@@ -50,13 +52,15 @@ else{
  //<td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests">
 //create onclick listeners for td to fill in result space
 $('#contactinfo').click( function(x){
+	 $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
-  output.innerHTML=  e.contactinfo + "<br>Change: <input id='conchange' type='text'> </input> <br> <div id='consub'>submit</div>";
+  output.innerHTML=  e.contactinfo + " <br> <div id='consub'>submit</div>";
+   $("#contactinput").show();//<input id='conchange' type='text'> </input> <br> <div id='consub'>submit</div>";
   $("#consub").click(function(m){
     //alert($('#conchange').val());
     var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://lmc.konghexdev.x10host.com/changecontact.php?callback=?', {info : $('#conchange').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.x10host.com/changecontact.php?callback=?', {info : $('#contactinput').val(), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -64,6 +68,8 @@ $('#contactinfo').click( function(x){
   });
 });	
 $('#setvisibility').click( function(x){
+ $("#contactinput").hide();
+ $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
   if(e.active == 'false'){
       output.innerHTML = tes  + " is currently disabled would you like to set your account to active? <br> <div style='color:white' id='atog'>toggle </div>";
@@ -95,6 +101,9 @@ $('#setvisibility').click( function(x){
 });
 
 $("#crossbutton").click(function(x){
+	$("#contactinput").hide();
+ $("#bioinput").hide();
+ output.innerHTML = '';
 var url = "http://lmc.konghexdev.x10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
 var exquests = new Array();
 var req = new Array();
@@ -110,7 +119,7 @@ for(var n = 0; n < least; n++){
 for(var r = 0; r < exquests.length; r++){
  var stringB = exquests[r];
  if(stringA == stringB){
-  var item = "<li data-role='list-divider'>" + stringA + " contact info: " +  cinfo[r] + "</li>";
+  var item = "<li data-role='list-divider'>" + stringA + "<li data-role='list-divider'> contact info: " +  cinfo[r] + "</li></li>";
     $('#lis').append(item).show().listview('refresh');
  }
 }
@@ -124,21 +133,22 @@ for(var r = 0; r < exquests.length; r++){
 
 
 $('#pagedescription').click( function(x){
+	$("#contactinput").hide();
+ $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
-     output.innerHTML="<div style='text-align:right' id='editp'> Edit </div>" + e.bio + "<br> <textarea id='parachange'style='font-family:baus; font-size:28px; font-weight:bold' id='acbio' rows='12' cols='50'>" +
-  "</textarea> <br> <div id='changebio' > submit </div> <br>";
+     output.innerHTML="<div style='text-align:right' id='editp'> Edit </div>" + e.bio + "<br>  <br> <div id='changebio' > submit </div> <br>";
   $('#changebio').hide();
-  $("#parachange").hide();
+ 
   $('#editp').click( function(m){
      $('#changebio').toggle();
-  $("#parachange").toggle();
+      $("#bioinput").toggle();
 
   });
   $('#changebio').click(function(m){
-        //alert($('#parachange').val());
+        //alert($('#parachange').val());  
          var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://lmc.konghexdev.x10host.com/changebio.php?callback=?', {newbio : $('#parachange').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.x10host.com/changebio.php?callback=?', {newbio : $('#bioinput').val(), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -148,6 +158,8 @@ $('#pagedescription').click( function(x){
 
 });	
 $('#internalrequests').click( function(x){
+	$("#contactinput").hide();
+ $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
        var markup = "<br><u> <div  id='req'>REQUESTS__</div> <div id='actchoices'>_ACTIVE PROFILES</div> </u> <br> <br>"; 
        output.innerHTML = markup;
@@ -212,6 +224,8 @@ $('#internalrequests').click( function(x){
       //list views
 });	
 $('#externalrequests').click( function(x){
+$("#contactinput").hide();
+ $("#bioinput").hide();
   output.innerHTML = "";
   $('li').remove();
   $('#lis').show();
