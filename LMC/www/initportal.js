@@ -14,6 +14,11 @@ var namrg;
 var tokens = new Array(3);
  var users = new Array();
  var descripts = new Array();
+ 
+ var del = function(i){
+  alert(i);
+ }
+ 
  var fill = function(swit){
 
    $("#popdesc" + swit).toggle();
@@ -46,7 +51,7 @@ var inflate = function(e){
     $('#deny').css('color', 'white');
 }
 else{
- document.getElementById('bannertext').innerHTML= "<br>" + e.name + "<br>";
+ document.getElementById('bannertext').innerHTML= "<br>" + decodeURIComponent(e.name) + "<br>";
  var output = document.getElementById("pagespace");
  var tes = e.name;
  //<td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests">
@@ -54,13 +59,13 @@ else{
 $('#contactinfo').click( function(x){
 	 $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
-  output.innerHTML=  e.contactinfo + " <br> <div id='consub'>submit</div>";
+  output.innerHTML=  decodeURIComponent(e.contactinfo) + " <br> <div id='consub'>submit</div>";
    $("#contactinput").show();//<input id='conchange' type='text'> </input> <br> <div id='consub'>submit</div>";
   $("#consub").click(function(m){
     //alert($('#conchange').val());
     var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://lmc.konghexdev.x10host.com/changecontact.php?callback=?', {info : $('#contactinput').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.x10host.com/changecontact.php?callback=?', {info : encodeURIComponent($('#contactinput').val()), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -78,7 +83,7 @@ $('#setvisibility').click( function(x){
       $("#activeinfo").show();
       $("#actpost").click(function(r){
       var nuactive = document.getElementById("month").value + " " + document.getElementById("day").value + " " + document.getElementById("year").value + " " + document.getElementById("time").value;
-      var url = "http://lmc.konghexdev.x10host.com/toggleactive.php?callback=?&typ=venue&user=" + tokens[0] + "&value=" + nuactive;
+      var url = "http://lmc.konghexdev.x10host.com/toggleactive.php?callback=?&typ=venue&user=" + tokens[0] + "&value=" + encodeURIComponent(nuactive);
       $.getJSON(url, function(z){ window.location.reload();});
     });
     }
@@ -115,9 +120,9 @@ var least = req.length;
 
 $("#lis").children().remove();
 for(var n = 0; n < least; n++){
-  var stringA = req[n];
+  var stringA = decodeURIComponent(req[n]);
 for(var r = 0; r < exquests.length; r++){
- var stringB = exquests[r];
+ var stringB = decodeURIComponent(exquests[r]);
  if(stringA == stringB){
   var item = "<li data-role='list-divider'>" + stringA + "<li data-role='list-divider'> contact info: " +  cinfo[r] + "</li></li>";
     $('#lis').append(item).show().listview('refresh');
@@ -136,19 +141,18 @@ $('#pagedescription').click( function(x){
 	$("#contactinput").hide();
  $("#bioinput").hide();
   $("#lis").hide().listview("refresh");
-     output.innerHTML="<div style='text-align:right' id='editp'> Edit </div>" + e.bio + "<br>  <br> <div id='changebio' > submit </div> <br>";
+     $("#pagespace").html('');
+     $("#pagespace").append( "<div style='text-align:left' id='editp'> Edit </div> <p1>" + decodeURIComponent(e.bio) + " </p1> <br>  <br> <div id='changebio' > submit </div> <br>");
   $('#changebio').hide();
- 
   $('#editp').click( function(m){
      $('#changebio').toggle();
       $("#bioinput").toggle();
-
   });
   $('#changebio').click(function(m){
         //alert($('#parachange').val());  
          var tname = 'venue_account';
     if(tokens[2] == 'band'){ tname = 'band_account'; }
-    $.getJSON('http://lmc.konghexdev.x10host.com/changebio.php?callback=?', {newbio : $('#bioinput').val(), ty : tname, acname : tokens[0] } ,
+    $.getJSON('http://lmc.konghexdev.x10host.com/changebio.php?callback=?', {newbio : encodeURIComponent($('#bioinput').val()), ty : tname, acname : tokens[0] } ,
         function(g){
           window.location.reload();
         }    
@@ -179,17 +183,17 @@ $('#internalrequests').click( function(x){
           var block = "";
         for(var j = 0; j < k.available[i].length - 2; j++){
          
-            block = block + k.available[i][j] + "  <br>"
+            block = block + decodeURIComponent(k.available[i][j]) + "  <br>"
       }
 
-        namrg = k.available[i][k.available[i].length - 1];
+        namrg = decodeURIComponent(k.available[i][k.available[i].length - 1]);
        users.push(namrg);
-       var changepop =  "<h3 style='background-color:#000000; color:white; font-family:arial' hidden  id='popdesc" + i + "' data-role='listdivider' >  " + k.available[i][k.available[i].length - 2] + "  </h3> ";
+       var changepop =  "<h3 style='background-color:#000000; color:white; font-family:arial' hidden  id='popdesc" + i + "' data-role='listdivider' >  " + decodeURIComponent(k.available[i][k.available[i].length - 2]) + "  </h3> ";
         // $('#popdesc').append(changepop);
        //   $("#popdesc" + i).hide();
        //total = total + changepop;
-       displayvalue = k.available[i][0];
-       if(k.available[i].length > 3){ displayvalue = displayvalue + " " + k.available[i][1];}
+       displayvalue = decodeURIComponent(k.available[i][0]);
+       if(k.available[i].length > 3){ displayvalue = displayvalue + " " + decodeURIComponent(k.available[i][1]);}
        descripts.push(displayvalue);
       block ="<li  data-role='list-divider'> <a href='' onClick='fill(" + i + ")' >"  + block + "</a>  <li onClick='request(" + i + ")' id='Item" +  i + "'>Request </li> </li>" + changepop ; 
      // alert(block); onclick='request('" + namrg + "','" +  displayvalue +"'')'
@@ -211,7 +215,7 @@ $('#internalrequests').click( function(x){
         $('#lis').children().remove();
          $('#lis').show();
         for( var i = 0; i < k.requests.length; i++){
-        $('#lis').append( "<li data-role='list-divider'>" + k.requests[i] + "</li>").listview("refresh");
+        $('#lis').append( "<li data-role='list-divider'> <img src='img/exx.jpg' onClick='del(" + i + ")'></img>"  +  decodeURIComponent(k.requests[i]) + " </li>").listview("refresh");
       }
 
       });
@@ -227,12 +231,12 @@ $('#externalrequests').click( function(x){
 $("#contactinput").hide();
  $("#bioinput").hide();
   output.innerHTML = "";
-  $('li').remove();
-  $('#lis').show();
+  $('#lis').children().remove();
+  $('#lis').show().listview('refresh');
  var url = "http://lmc.konghexdev.x10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
  $.getJSON(url, function(exr){
    for(var n = 0; n < exr.extrequests.length; n++){
-     var tok = "<li data-role='list-divider'>" + exr.extrequests[n] + "</li>";
+     var tok = "<li data-role='list-divider'>" + decodeURIComponent(exr.extrequests[n]) + "</li>";
      $('#lis').append(tok).listview("refresh");
    }
  });
