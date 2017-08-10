@@ -215,7 +215,7 @@ $('#internalrequests').click( function(x){
         $('#lis').children().remove();
          $('#lis').show();
         for( var i = 0; i < k.requests.length; i++){
-        $('#lis').append( "<li data-role='list-divider'>"  +  decodeURIComponents(k.requests[i]) + " </li>").listview("refresh");
+        $('#lis').append( "<li data-role='list-divider'> <img src='img/exx.jpg' onClick='del(" + i + ")'></img>"  +  decodeURIComponent(k.requests[i]) + " </li>").listview("refresh");
       }
 
       });
@@ -231,12 +231,12 @@ $('#externalrequests').click( function(x){
 $("#contactinput").hide();
  $("#bioinput").hide();
   output.innerHTML = "";
-  $('li').remove();
-  $('#lis').show();
+  $('#lis').children().remove();
+  $('#lis').show().listview('refresh');
  var url = "http://lmc.konghexdev.x10host.com/externalrequests.php?callback=?&user=" + tokens[0] + "&type=" + tokens[2];
  $.getJSON(url, function(exr){
    for(var n = 0; n < exr.extrequests.length; n++){
-     var tok = "<li data-role='list-divider'>" + decodeURIComponents(exr.extrequests[n]) + "</li>";
+     var tok = "<li data-role='list-divider'>" + decodeURIComponent(exr.extrequests[n]) + "</li>";
      $('#lis').append(tok).listview("refresh");
    }
  });

@@ -124,7 +124,16 @@ url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
             if(d.return == " 'yes"){
              window.location.assign("initalpage.html");
             }
-            else { alert("account creation failed, try different input.");}
+            else { alert("account creation failed, try different input.");
+
+
+              setTimeout(function(r){
+                   window.location.assign("initalpage.html");
+
+             }, 2000);
+               
+
+        }
            });
 
         }
@@ -138,4 +147,3 @@ url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
  </script>
 </body>
 </html>
-s
