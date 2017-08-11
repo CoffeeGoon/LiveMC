@@ -223,7 +223,7 @@ $('#internalrequests').click( function(x){
          $('#lis').show();
          requests = k.requests.slice();
         for( var i = 0; i < k.requests.length; i++){
-        $('#lis').append( "<li data-role='list-divider'><li> <img src='img/exx.jpg' onClick='del(" + i + ")'> </img>   </li>"  +  decodeURIComponent(k.requests[i]) + " </li>").listview("refresh");
+        $('#lis').append( "<li data-role='list-divider'> <img src='img/exx.jpg' onClick='del(" + i + ")'> </img>   </li> <li data-role='list-divider'>"  +  decodeURIComponent(k.requests[i]) + " </li>").listview("refresh");
       }
 
       });
