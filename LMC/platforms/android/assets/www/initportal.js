@@ -53,7 +53,7 @@ var inflate = function(e){
 else{
  document.getElementById('bannertext').innerHTML= "<br>" + decodeURIComponent(e.name) + "<br>";
  var output = document.getElementById("pagespace");
- var tes = e.name;
+ var tes = decodeURIComponent(e.name);
  //<td id="contactinfo"></td><td id="setvisibility"></td><td id="pagedescription"></td><td id="internalrequests"></td><td id="externalrequests">
 //create onclick listeners for td to fill in result space
 $('#contactinfo').click( function(x){
