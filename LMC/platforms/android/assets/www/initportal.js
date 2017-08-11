@@ -16,8 +16,15 @@ var tokens = new Array(3);
  var descripts = new Array();
  
  var del = function(i){
-  alert(i);
- }
+  var username = requests(i);
+  var call = "http://lmc.konghexdev.x10host.com/deleterequest.php?callback=?";
+  $.getJSON(call, { user : tokens[0], type : tokens[2], otheruser : username}, function(){
+     window.location.reload();
+
+  }
+    );
+  }
+ 
  
  var fill = function(swit){
 
@@ -214,8 +221,9 @@ $('#internalrequests').click( function(x){
       $('#req').click(function(){
         $('#lis').children().remove();
          $('#lis').show();
+         requests = k.requests.slice();
         for( var i = 0; i < k.requests.length; i++){
-        $('#lis').append( "<li data-role='list-divider'>"  +  decodeURIComponent(k.requests[i]) + " </li><li> <img src='img/exx.jpg' onClick='del(" + i + ")'></img> </li>").listview("refresh");
+        $('#lis').append( "<li data-role='list-divider'>"  +  decodeURIComponent(k.requests[i]) + "  <img src='img/exx.jpg' onClick='del(" + i + ")'></img> </li>").listview("refresh");
       }
 
       });
