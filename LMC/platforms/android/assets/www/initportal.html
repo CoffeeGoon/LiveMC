@@ -45,12 +45,12 @@ url(CHILLER.TTF);
 </tbody>
 </table>
 <div data-role="main" style="background-color:#280055" class="ui-content">
-<table>
+<table id="mainpg">
 <tbody align="center">
-<td id="space" TD style="vertical-align:text-top;"  style="background-color:#0605AB">
-<h1 id="pagespace" style="color:#990000; font-family:baus; font-weight:bold;">
+<td id="space" TD style="vertical-align:text-top;"  style="background-color:#0605AB; word-break:break-all">
+<h1 id="pagespace" style="color:#990000; font-family:baus; font-weight:bold; word-break:break-all;">
 </h1>
-<ul id="lis" data-theme='b' data-role="listview">
+<ul id="lis" data-theme='b' data-role="listview" style="word-break:break-all">
 </ul>
 
 <form id="activeinfo" hidden>
@@ -90,7 +90,7 @@ url(CHILLER.TTF);
 <textarea id="contactinput" style="font-family:baus; font-size:28px; font-weight:bold" id="acbio" rows="12" cols="50" ></textarea>
 <textarea id="bioinput" style="font-family:baus; font-size:28px; font-weight:bold" id="acbio" rows="12" cols="50"> </textarea>
 </h1>
-
+</td>
 <script>
 var days = 31;
 while(days != 0){
@@ -145,6 +145,8 @@ $('#externalrequests').append("external requests");
  $('#space').css('width', cellw  + 'px');
  $('#space').css('height', cellh + 'px');
  $('#space').css('background-color', '#0A0A1A');
+  $("#mainpg").css('overflow', 'scroll');
+ $("#mainpg").css('table-layout', 'fixed');
  </script>
 <div id="alternate">
 <h1 id="deny" hidden='true'>

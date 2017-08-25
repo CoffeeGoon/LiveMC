@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<meta name="format-detection" content="telephone=no">
+<style>
+ @font-face {
+ 	font-family:
+ 	baus;
+src: 
+url(CHILLER.TTF); 
+}
+</style>
+
+</head>
+<body style="background-color:black">
+<h1 style="color:white;
+ font-family:baus; font-size:200%; background-color:#000000; ">
+<br>
+<br>
+<center>
+
+Account Creation </center>
+<br>
+ <center>
+ <strong>
+ <br>
+ <form>
+  
+    <input id="btype" name="vob" type="radio"> Band <input id="vtype"  name="vob" type="radio" > Venue
+ <br>_______name: <input id="title" type="text"> 
+<br>____username: <input id="usr" type="text"> </input> 
+  <br> ___password: <input id="password" type="text"> </input> 
+ 
+   <br> contact info: <input id="cont" type="text"> 
+   <br>
+   <br>
+   Account Description
+ <br>
+ <textarea  style="font-family:baus; font-size:28px; font-weight:bold" id="acbio" rows="12" cols="50">
+  </textarea>
+  </form>
+ <br>
+ <div id="subm" style="font-size:45px"> Create Account </div>
+ <br>
+  <div id="response" > </div>
+ <br>
+ <br>
+ <br>
+ <br>
+ </strong>
+ </center>
+  <script type="text/javascript" src="cordova.js"></script>
+ <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+ <script>
+ var band = false;
+ var host = false;
+ var enable = false;
+ var inputs = new Array(5);
+ var check = function(args){
+    var count = 0;
+    while(count != 5){
+       if(args[count] == ''){
+       	 enable = false;
+       	 alert(count);
+
+       }
+       count++;
+    }
+   // alert(enable);
+ };
+  $("#subm").click(
+  	function(e){
+        if(document.getElementById("btype").checked) {  band = true; host = false;}
+         if(document.getElementById("vtype").checked) {host = true; band = false;}
+         if(band != true && host != true){ alert("error");}
+      inputs[0] =  document.getElementById("usr").value;
+       inputs[1] =  document.getElementById("password").value;
+        inputs[2] = document.getElementById("title").value;
+         inputs[3] = document.getElementById("cont").value;
+          inputs[4] = document.getElementById("acbio").value;
+       if(band){
+         enable = true;
+       	var url = "http://lmc.konghexdev.x10host.com/bandpasscheck.php?callback=?";
+       check(inputs);
+          if(enable){
+             enable = false;
+        $.getJSON( url, { user : inputs[0] },  function(e){ 
+                  
+          if (e.retvalue == '') {
+url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
+          $.getJSON( url, {use : inputs[0], password : inputs[1], name : encodeURIComponent(inputs[2]), contact: encodeURIComponent(inputs[3]), abio : encodeURIComponent(inputs[4]), type : 'band'},  function(d){
+           enable = false;  
+           if(d.return == "yes"){
+           window.location.assign("initalpage.html");
+         }
+         else{ alert("account creation failed, try different input.");
+             setTimeout(function(r){
+                   window.location.assign("initalpage.html");
+
+             }, 2000);
+         }
+         }); 
+
+
+          }
+           }
+         ); 
+       }    
+   }
+   if(host){
+       enable = true;
+   		var url = "http://lmc.konghexdev.x10host.com/hostpasscheck.php?callback=?";
+      check(inputs);
+      if(enable){
+        enable = false;
+   	 $.getJSON(url,  { user : inputs[0] }, function(ret){
+          
+        if (ret.retvalue == "") { 
+url = "http://lmc.konghexdev.x10host.com/createaccount.php?callback=?";
+           $.getJSON( url, {use : inputs[0], password : inputs[1], name : encodeURIComponent(inputs[2]), contact: encodeURIComponent(inputs[3]), abio : encodeURIComponent(inputs[4]), type : 'venue'},  function(d){
+            enable = false;
+            if(d.return == "yes"){
+             window.location.assign("initalpage.html");
+            }
+            else { alert("account creation failed, try different input.");
+
+
+              setTimeout(function(r){
+                   window.location.assign("initalpage.html");
+
+             }, 2000);
+               
+
+        }
+           });
+
+        }
+       });
+   	 }
+   	
+
+   }
+ });
+  	
+ </script>
+</body>
+</html>
